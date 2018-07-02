@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    provided 'com.android.support:appcompat-v7:26.1.0'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    provided 'com.android.support:recyclerview-v7:28.0.0-alpha3'
+    provided 'com.github.bumptech.glide:glide:3.7.0'
+    provided 'com.google.code.gson:gson:2.8.4'
+}
+
+
+
+ext {
+    package_userOrg = 'dengzhi00' // 组织名 不填默认用户名
+    package_repo = 'maven' // bintray上的仓库名，一般为maven
+    package_type = 'aar'  // 输出类型
+    package_group = 'com.dzm.jar' // JCenter的GroupId
+    package_artifact = 'dzmjar' // JCenter的ArtifactId
+    package_version = '0.1.9'  // JCenter的VersionId
+    package_description = 'A tool for Android'
+
+    siteUrl = 'https://github.com/dengzhi00/DzmJcenter'
+    gitUrl = 'https://github.com/dengzhi00/DzmJcenter'
+
+    //开发者信息
+    developerId = ''
+    developerName = 'dzm'
+    developerEmail = 'deng836426852@gmail.com'
+
+    //开源协议
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = 'Apache-2.0'
+}
+
+apply from:'../gradle/bintray.gradle'
